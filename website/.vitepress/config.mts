@@ -6,6 +6,9 @@ export default defineConfig({
   description: '代码知识图谱构建工具 — 解析 → 语义化 → 向量化',
   appearance: 'dark',
 
+  // 项目页部署到 https://ychangqing.github.io/IGraph/，需设置仓库名作为 base
+  base: '/IGraph/',
+
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
   ],
@@ -119,7 +122,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/' },
+      { icon: 'github', link: 'https://github.com/Ychangqing/IGraph' },
     ],
 
     footer: {

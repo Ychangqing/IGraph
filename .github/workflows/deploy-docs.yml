@@ -1,0 +1,64 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  # 推送到 main 分支且改动了官网内容时触发
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - '.github/workflows/deploy-docs.yml'
+  # 允许在 Actions 页面手动触发
+  workflow_dispatch:
+
+# 授予 GITHUB_TOKEN 部署 Pages 所需权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只保留一个并发部署，跳过排队中的旧任务
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 拉取完整历史，供 lastUpdated 生成时间
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build with VitePress
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/.vitepress/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
