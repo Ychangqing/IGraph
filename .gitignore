@@ -1,0 +1,28 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+coverage/
+*.tsbuildinfo
+
+# 运行时生成的图谱数据 / 配置（含潜在敏感信息）
+.codegraph/
+
+# 环境变量（凭据来源，切勿提交）
+.env
+.env.*
+
+# 编辑器 / 系统
+.DS_Store
+*.log
+
+tests/fixtures/react-demo
+
+# 文档站点
+website/node_modules/
+website/.vitepress/dist/
+website/.vitepress/cache/
+
+just-test
+../just-test/

@@ -1,0 +1,44 @@
+{
+  "queries": [
+    {
+      "query": "createUser 创建单个用户",
+      "expected_nodes": ["createUser"],
+      "expected_files": ["src/service.ts"]
+    },
+    {
+      "query": "normalizeName 规范化用户名",
+      "expected_nodes": ["normalizeName"],
+      "expected_files": ["src/service.ts"]
+    },
+    {
+      "query": "UserService 用户服务类",
+      "expected_nodes": ["UserService"],
+      "expected_files": ["src/service.ts"]
+    },
+    {
+      "query": "createUsers 批量创建用户",
+      "expected_nodes": ["createUsers"],
+      "expected_files": ["src/utils.ts"]
+    },
+    {
+      "query": "formatUser 格式化用户为字符串",
+      "expected_nodes": ["formatUser"],
+      "expected_files": ["src/utils.ts"]
+    },
+    {
+      "query": "UserListView 用户列表 React 组件",
+      "expected_nodes": ["UserListView"],
+      "expected_files": ["src/UserList.tsx"]
+    },
+    {
+      "query": "useUsers 获取用户的 hook",
+      "expected_nodes": ["useUsers"],
+      "expected_files": ["src/UserList.tsx"]
+    },
+    {
+      "query": "Repository 用户仓储接口",
+      "expected_nodes": ["Repository"],
+      "expected_files": ["src/types.ts"]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "name": "igraph-cli",
+  "version": "0.1.0",
+  "description": "对代码仓库做解析 → 语义化 → 向量化，构建多模态知识图谱的 Node.js CLI 工具",
+  "type": "module",
+  "bin": {
+    "igraph": "./dist/igraph.js"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build",
+    "docs:dev": "npm -C website run dev",
+    "docs:build": "npm -C website run build",
+    "docs:preview": "npm -C website run preview"
+  },
+  "keywords": [
+    "igraph",
+    "code-graph",
+    "knowledge-graph",
+    "code-search",
+    "code-intelligence",
+    "mcp",
+    "tree-sitter",
+    "rag",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ychangqing/IGraph.git"
+  },
+  "homepage": "https://github.com/Ychangqing/IGraph#readme",
+  "bugs": {
+    "url": "https://github.com/Ychangqing/IGraph/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "better-sqlite3": "^11.10.0",
+    "commander": "^12.0.0",
+    "glob": "^11.1.0",
+    "ignore": "^6.0.2",
+    "mammoth": "^1.12.0",
+    "pdf-parse": "^1.1.1",
+    "sqlite-vec": "^0.1.9",
+    "tree-sitter": "^0.21.1",
+    "tree-sitter-go": "^0.23.4",
+    "tree-sitter-java": "^0.23.5",
+    "tree-sitter-javascript": "^0.21.4",
+    "tree-sitter-python": "^0.21.0",
+    "tree-sitter-typescript": "^0.21.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.0.0",
+    "@types/pdf-parse": "^1.1.5",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
