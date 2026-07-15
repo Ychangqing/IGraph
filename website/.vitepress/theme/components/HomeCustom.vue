@@ -30,12 +30,12 @@ onMounted(() => {
         解析 → 语义化 → 向量化，将代码仓库转化为可查询的知识图谱，让 AI 助手真正理解你的代码
       </p>
       <div class="hero-actions">
-        <a href="/guide/quick-start" class="btn-primary">快速开始 →</a>
-        <a href="/reference/cli" class="btn-secondary">CLI 参考</a>
+        <a href="/IGraph/guide/quick-start" class="btn-primary">快速开始 →</a>
+        <a href="/IGraph/reference/cli" class="btn-secondary">CLI 参考</a>
       </div>
       <div class="hero-install">
         <span class="prompt">$</span>
-        <code>npm install -g igraph</code>
+        <code>npm install -g igraph-cli</code>
       </div>
     </section>
 
@@ -274,7 +274,7 @@ onMounted(() => {
     <section class="cta-section">
       <h2 class="cta-title">让 AI 助手理解你的整个代码库</h2>
       <p class="cta-desc">三条命令即可完成接入，从此告别上下文丢失。</p>
-      <a href="/guide/quick-start" class="btn-primary">开始使用 →</a>
+      <a href="/IGraph/guide/quick-start" class="btn-primary">开始使用 →</a>
     </section>
   </div>
 </template>
