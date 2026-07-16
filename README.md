@@ -9,6 +9,10 @@
 </p>
 
 <p align="center">
+  简体中文 · <a href="README.en.md">English</a>
+</p>
+
+<p align="center">
   <a href="https://www.npmjs.com/package/igraph-cli"><img src="https://img.shields.io/npm/v/igraph-cli?color=blue&label=npm" alt="npm version" /></a>
   <a href="https://github.com/Ychangqing/IGraph/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Ychangqing/IGraph" alt="license" /></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen" alt="node version" /></a>
