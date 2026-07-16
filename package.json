@@ -1,6 +1,6 @@
 {
   "name": "igraph-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "对代码仓库做解析 → 语义化 → 向量化，构建多模态知识图谱的 Node.js CLI 工具",
   "type": "module",
   "bin": {
