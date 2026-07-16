@@ -38,9 +38,9 @@ describe("CLI 帮助文本", () => {
     expect(program.description()).toContain("知识图谱");
   });
 
-  it("版本号与 package.json 一致（0.1.0）", () => {
+  it("版本号与 package.json 一致（0.1.1）", () => {
     const program = buildProgram();
-    expect(program.version()).toBe("0.1.0");
+    expect(program.version()).toBe("0.1.1");
   });
 
   it("全局选项包含 --verbose 和 --quiet", () => {
