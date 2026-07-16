@@ -46,7 +46,7 @@ onMounted(() => {
       <p class="section-desc">当 AI 助手接入代码知识图谱后，从「凭猜测修改」变为「精准跨模态编排」。</p>
 
       <div class="compare-prompt">
-        <span class="compare-prompt-text">给交易溯源查询加按币种筛选条件。</span>
+        <span class="compare-prompt-text">给订单列表加一个按支付状态筛选的功能。</span>
       </div>
       <div class="compare-grid">
         <!-- 左：普通 Agent -->
@@ -60,32 +60,32 @@ onMounted(() => {
           <div class="compare-card-body">
             <div class="compare-step">
               <span class="step-dot dot-blue"></span>
-              <span class="step-text"><code>grep "交易溯源"</code> · <code>grep "币种"</code> — 反复检索关键词定位相关文件</span>
+              <span class="step-text"><code>grep "订单"</code> · <code>grep "支付状态"</code> — 反复检索关键词定位相关文件</span>
             </div>
             <div class="compare-narrative">
-              看起来要在交易溯源查询页加一个币种筛选，我先找到相关页面和查询函数改一下。
+              看起来要在订单列表页加一个支付状态筛选，我先找到相关页面和查询函数改一下。
             </div>
             <div class="compare-step">
               <span class="step-dot dot-blue"></span>
-              <span class="step-text">Edit 交易溯源查询页组件 — 新增币种筛选下拉</span>
+              <span class="step-text">Edit 订单列表页组件 — 新增支付状态下拉</span>
             </div>
             <div class="compare-step">
               <span class="step-dot dot-blue"></span>
-              <span class="step-text">Edit getTradeOriginList — 凭猜测加了 currency 查询参数</span>
+              <span class="step-text">Edit getOrderList — 凭猜测加了 status 查询参数</span>
             </div>
             <div class="compare-result">
               <span class="result-icon">😊</span>
-              <span>完成！已加上币种筛选下拉和查询参数。</span>
+              <span>完成！已加上支付状态筛选下拉和查询参数。</span>
             </div>
-            <div class="compare-note">字段名和可选币种我是按常见写法猜的，你确认下对不对。</div>
+            <div class="compare-note">字段名和可选状态值我是按常见写法猜的，你确认下对不对。</div>
             <div class="compare-missed">
               <div class="missed-header"><span class="missed-icon">⚠</span> 遗漏了这些</div>
-              <div class="missed-item"><span class="x-mark">✕</span> <strong>PRD 验收标准</strong> — 未读 PRD-023，漏了「币种为空时展示全部」等规则</div>
-              <div class="missed-item"><span class="x-mark">✕</span> <strong>DB 真实字段</strong> — 猜成 currency，实际是 t_trade_origin.currency_code</div>
-              <div class="missed-item"><span class="x-mark">✕</span> <strong>币种下拉数据源</strong> — 没接 useEnum 枚举，选项写死或缺失</div>
-              <div class="missed-item"><span class="x-mark">✕</span> <strong>导出底表</strong> — exportLogisticsTrade 未同步加币种筛选</div>
-              <div class="missed-item"><span class="x-mark">✕</span> <strong>后端接口参数</strong> — 服务端查询未加 currency_code 过滤</div>
-              <div class="missed-item"><span class="x-mark">✕</span> <strong>集成测试</strong> — 用例会因参数结构变化而失败</div>
+              <div class="missed-item"><span class="x-mark">✕</span> <strong>PRD 验收标准</strong> — 未读 PRD-012，漏了「未支付超 30 分钟自动关闭不展示」等规则</div>
+              <div class="missed-item"><span class="x-mark">✕</span> <strong>DB 真实字段</strong> — 猜成 status，实际是 t_order.pay_status（枚举值不同）</div>
+              <div class="missed-item"><span class="x-mark">✕</span> <strong>状态下拉数据源</strong> — 没接 useDict 字典，选项写死或缺失</div>
+              <div class="missed-item"><span class="x-mark">✕</span> <strong>导出功能</strong> — exportOrderList 未同步加支付状态筛选</div>
+              <div class="missed-item"><span class="x-mark">✕</span> <strong>后端接口参数</strong> — 服务端查询未加 pay_status 过滤</div>
+              <div class="missed-item"><span class="x-mark">✕</span> <strong>单元测试</strong> — 用例会因参数结构变化而失败</div>
             </div>
           </div>
         </div>
@@ -102,27 +102,27 @@ onMounted(() => {
           <div class="compare-card-body">
             <div class="compare-step">
               <span class="step-dot dot-cyan"></span>
-              <span class="step-text"><code>igraph_explore "交易溯源 币种筛选"</code> · 语义级检索（非关键词 grep）</span>
+              <span class="step-text"><code>igraph_explore "订单列表 支付状态筛选"</code> · 语义级检索（非关键词 grep）</span>
             </div>
             <div class="compare-hit">
-              <div class="hit-header"><span class="hit-icon">🎯</span> 已澄清需求：一次命中 PRD-023 + getTradeOriginList + currency_code 字段</div>
-              <div class="hit-item"><span class="hit-tag">PRD</span> PRD-023《交易溯源查询》— 币种为空时展示全部等验收规则</div>
-              <div class="hit-item"><span class="hit-tag">FN</span> getTradeOriginList — 交易溯源列表查询函数</div>
-              <div class="hit-item"><span class="hit-tag">DB</span> t_trade_origin.currency_code — 币种真实字段</div>
-              <div class="hit-item"><span class="hit-tag">FN</span> useEnum — 币种下拉枚举来源</div>
-              <div class="hit-item"><span class="hit-tag">FN</span> exportLogisticsTrade — 导出物流交易底表</div>
+              <div class="hit-header"><span class="hit-icon">🎯</span> 已澄清需求：一次命中 PRD-012 + getOrderList + pay_status 字段</div>
+              <div class="hit-item"><span class="hit-tag">PRD</span> PRD-012《订单管理》— 未支付超 30 分钟不展示等验收规则</div>
+              <div class="hit-item"><span class="hit-tag">FN</span> getOrderList — 订单列表查询函数</div>
+              <div class="hit-item"><span class="hit-tag">DB</span> t_order.pay_status — 支付状态真实字段</div>
+              <div class="hit-item"><span class="hit-tag">FN</span> useDict — 支付状态下拉字典数据源</div>
+              <div class="hit-item"><span class="hit-tag">FN</span> exportOrderList — 订单导出函数</div>
             </div>
             <div class="compare-narrative">
-              需求已澄清：按 currency_code 字段筛选，币种取 useEnum 枚举，空值查全部。这是跨模态改动，计划如下：
+              需求已澄清：按 pay_status 字段筛选，状态取 useDict 字典，未支付超 30 分钟的订单不展示。这是跨模态改动，计划如下：
             </div>
             <div class="compare-plan">
               <div class="plan-header"><span class="plan-icon">🚀</span> 计划 · 6 步</div>
-              <div class="plan-item">1. PRD-023 验收规则对齐（空值展示全部）</div>
-              <div class="plan-item">2. getTradeOriginList 新增 currency_code 过滤</div>
-              <div class="plan-item">3. 后端接口新增 currency_code 参数</div>
-              <div class="plan-item">4. useEnum 币种下拉数据源接入</div>
-              <div class="plan-item">5. exportLogisticsTrade 同步币种筛选</div>
-              <div class="plan-item">6. 更新交易溯源集成测试</div>
+              <div class="plan-item">1. PRD-012 验收规则对齐（超时未支付不展示）</div>
+              <div class="plan-item">2. getOrderList 新增 pay_status 过滤</div>
+              <div class="plan-item">3. 后端接口新增 pay_status 参数</div>
+              <div class="plan-item">4. useDict 支付状态字典接入</div>
+              <div class="plan-item">5. exportOrderList 同步支付状态筛选</div>
+              <div class="plan-item">6. 更新订单列表单元测试</div>
             </div>
             <div class="compare-step">
               <span class="step-dot dot-cyan"></span>
@@ -137,10 +137,10 @@ onMounted(() => {
               <div class="passed-tags">
                 <span class="pass-tag">✓ PRD 验收标准</span>
                 <span class="pass-tag">✓ DB 真实字段</span>
-                <span class="pass-tag">✓ 币种下拉数据源</span>
-                <span class="pass-tag">✓ 导出底表</span>
+                <span class="pass-tag">✓ 状态下拉数据源</span>
+                <span class="pass-tag">✓ 导出功能</span>
                 <span class="pass-tag">✓ 后端接口参数</span>
-                <span class="pass-tag">✓ 集成测试</span>
+                <span class="pass-tag">✓ 单元测试</span>
               </div>
             </div>
           </div>
